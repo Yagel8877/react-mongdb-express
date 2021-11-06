@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Home from './components/Home';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
 
 class App extends Component {
 state = {
@@ -24,15 +27,32 @@ state = {
   };
 
   render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">{this.state.data}</p>
+    if(this.state.data === null){
+      return(<p>cant get aaaa</p>)
+    }
+    else{
+      return (
+      <Router >
+        <div className="app">
+        <p>{this.state.data}</p>
+        <Switch>
+          <Route exact path='/'>
+            <Home />
+          </Route>
+          <Route path='/signup'>
+            <SignUp />
+          </Route>
+          <Route path='/login'>
+            <Login />
+          </Route>
+        </Switch>
+
+      
+      
       </div>
+      </Router>
     );
+    }
   }
 }
 
