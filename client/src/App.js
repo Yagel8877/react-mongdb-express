@@ -37,7 +37,7 @@ state = {
         <p>{this.state.data}</p>
         <Switch>
           <Route exact path='/'>
-            <Home />
+            <Home placeholder="dd" />
           </Route>
           <Route path='/signup'>
             <SignUp />

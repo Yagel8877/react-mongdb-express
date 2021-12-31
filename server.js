@@ -54,7 +54,12 @@ app.post('/login', async (req,res)=>{
   mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((result) => {console.log('connection made to DB- searching user login')}).catch((err) => {res.status(400).send(err)})
 
+  if (mongoose.connection.readyState != 1) (res.send("cant connect"))
   const user = await User.findOne({userName: req.body.userName})
+  // const user = User.findOne({userName: req.body.userName})
+
+  
+
   try{ 
   if(await bcrypt.compare(req.body.password, user.password)){
       res.send(`${user.userName} has logged in at ` + Date())
